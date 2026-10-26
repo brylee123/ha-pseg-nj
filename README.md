@@ -8,7 +8,7 @@
 [![PyPI](https://img.shields.io/pypi/v/pseg-nj-mymeter)](https://pypi.org/project/pseg-nj-mymeter/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[Install with HACS](#install-with-hacs) · [Latest release](https://github.com/brylee123/ha-pseg-nj/releases/latest) · [Report an issue](https://github.com/brylee123/ha-pseg-nj/issues) · [Changelog](CHANGELOG.md)
+[Install with HACS](#install-with-hacs) · [Releases](https://github.com/brylee123/ha-pseg-nj/releases) · [Report an issue](https://github.com/brylee123/ha-pseg-nj/issues) · [Changelog](CHANGELOG.md)
 
 Unofficial community project; not affiliated with or endorsed by PSE&G.
 The illustration above is project artwork, not a screenshot of live energy data.
@@ -161,4 +161,4 @@ the matching `pytest-homeassistant-custom-component` framework in a compatible
 Linux/HA environment and run `python -m pytest tests/ha`. Native configuration,
 setup, migration, reauthentication, service and diagnostics tests pass on HA
 2026.10.4 with Python 3.14.7. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full
-five-page alignment audit and pending scaffold/hassfest/core/publication steps.
+five-page alignment audit, completed official tooling checks and remaining live verification.
