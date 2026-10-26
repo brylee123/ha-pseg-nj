@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pseg-nj-mymeter"
+version = "0.2.0"
+description = "Asynchronous PSE&G NJ MyMeter export client and electricity data models"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [{name = "brylee123"}]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["pseg", "mymeter", "home-assistant", "electricity", "energy"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Framework :: AsyncIO",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+dependencies = ["aiohttp>=3.12,<4", "tzdata>=2026.1; platform_system == 'Windows'"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pseg_mymeter = ["py.typed"]

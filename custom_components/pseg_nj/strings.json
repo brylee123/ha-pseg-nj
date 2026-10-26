@@ -1,0 +1,131 @@
+{
+  "title": "PSE&G NJ Energy",
+  "config": {
+    "step": {
+      "user": {
+        "title": "PSE&G NJ electricity",
+        "description": "Configure a meter for Hourly CSV history. An optional existing session enables cloud polling every 12 hours.",
+        "data": {
+          "label": "Statistic label",
+          "meter": "Meter number",
+          "session_cookie": "Session cookie (optional)"
+        },
+        "data_description": {
+          "label": "Stable lowercase name for the Energy statistic, for example electricity.",
+          "meter": "The displayed meter number, including leading zeroes.",
+          "session_cookie": "Leave blank for offline CSV import. A provided session is validated before setup."
+        }
+      },
+      "reauth_confirm": {
+        "title": "PSE&G NJ session",
+        "description": "Enter a replacement Cookie header value from your own MyMeter session. Leave it blank and submit to disable polling and use CSV-only mode. Password login and MFA renewal are not implemented.",
+        "data": {
+          "session_cookie": "Session cookie"
+        },
+        "data_description": {
+          "session_cookie": "A secret stored in HA's config entry. Enter directly here, never in a public issue."
+        }
+      },
+      "reconfigure": {
+        "title": "PSE&G NJ session",
+        "description": "Enter a replacement Cookie header value from your own MyMeter session. Leave it blank and submit to disable polling and use CSV-only mode. Password login and MFA renewal are not implemented.",
+        "data": {
+          "session_cookie": "Session cookie"
+        },
+        "data_description": {
+          "session_cookie": "A secret stored in HA's config entry. Enter directly here, never in a public issue."
+        }
+      }
+    },
+    "error": {
+      "invalid_label": "Use a letter followed by lowercase letters, digits or underscores (40 characters maximum).",
+      "invalid_meter": "Enter a numeric meter number.",
+      "label_used": "This statistic label is already configured.",
+      "invalid_auth": "The session is invalid or expired. Enter a current session or leave it blank for CSV-only mode.",
+      "cannot_connect": "Cannot connect to PSE&G. Try again later.",
+      "meter_not_found": "The configured meter is not available in this session.",
+      "invalid_response": "The portal returned an unsupported export form."
+    },
+    "abort": {
+      "already_configured": "This meter is already configured.",
+      "reauth_successful": "Session updated.",
+      "reconfigure_successful": "Configuration updated."
+    }
+  },
+  "exceptions": {
+    "entry_not_loaded": {
+      "message": "The selected PSE&G NJ config entry is not loaded."
+    },
+    "read_failed": {
+      "message": "Could not read a UTF-8 CSV in /config/pseg_nj."
+    },
+    "storage_failed": {
+      "message": "Could not save the usage ledger. Check Home Assistant storage."
+    },
+    "invalid_filename": {
+      "message": "Use a CSV filename directly inside /config/pseg_nj."
+    },
+    "file_too_large": {
+      "message": "The CSV exceeds the 25 MB import limit."
+    },
+    "invalid_columns": {
+      "message": "Expected usage CSV with Start and kWh columns; billing and duplicate columns are unsupported."
+    },
+    "invalid_row": {
+      "message": "The export contains a malformed row, timestamp or kWh value."
+    },
+    "invalid_value": {
+      "message": "Expected finite, nonnegative electricity consumption within the supported range."
+    },
+    "hourly_required": {
+      "message": "Export Hourly usage with at least two consecutive hourly readings. Sub-hourly, daily and billing exports are unsupported."
+    },
+    "duplicate_time": {
+      "message": "The export contains duplicate local timestamps. Export one meter and one date range."
+    },
+    "no_hours": {
+      "message": "The file contains no unambiguous hourly readings for this meter."
+    },
+    "invalid_meter": {
+      "message": "Enter a numeric meter number."
+    },
+    "cannot_connect": {
+      "message": "Cannot connect to PSE&G. Try again later."
+    },
+    "invalid_response": {
+      "message": "PSE&G returned unsupported usage data or the configured meter was not found."
+    },
+    "session_expired": {
+      "message": "The PSE&G session expired. Reauthenticate with a current session cookie or switch to CSV-only mode."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "import_entry_id": {
+        "name": "Import entry ID"
+      },
+      "imported_hours": {
+        "name": "Imported hours"
+      },
+      "last_import": {
+        "name": "Last import"
+      }
+    }
+  },
+  "services": {
+    "import_csv": {
+      "name": "Import hourly electricity CSV",
+      "description": "Backfill hourly electricity statistics from a CSV in /config/pseg_nj.",
+      "fields": {
+        "entry_id": {
+          "name": "Integration entry ID",
+          "description": "Value of the Import entry ID diagnostic sensor."
+        },
+        "filename": {
+          "name": "CSV filename",
+          "description": "Filename directly inside /config/pseg_nj."
+        }
+      }
+    }
+  }
+}

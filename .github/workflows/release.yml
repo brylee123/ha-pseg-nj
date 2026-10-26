@@ -1,0 +1,37 @@
+name: Publish experimental release
+on:
+  workflow_run:
+    workflows: [Local library and integration checks]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  release:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14.7"
+      - run: python scripts/package_release.py
+      - name: Publish version if it does not already exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          VERSION=$(python -c 'import json; print(json.load(open("custom_components/pseg_nj/manifest.json"))["version"])')
+          TAG="v$VERSION"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; leaving it unchanged."
+            exit 0
+          fi
+          gh release create "$TAG" dist/pseg_nj.zip dist/SHA256SUMS \
+            --target "$RELEASE_SHA" --title "PSE&G NJ Energy $TAG" \
+            --prerelease --notes-file .github/RELEASE_NOTES.md

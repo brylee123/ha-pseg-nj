@@ -1,0 +1,38 @@
+# Self-audit only: no quality tier is claimed in manifest.json.
+rules:
+  action-setup: done
+  appropriate-polling: done
+  brands:
+    status: done
+    comment: Custom integration includes local brand icons. Core would require a separate brands contribution.
+  common-modules: done
+  config-flow: done
+  config-flow-test-coverage:
+    status: todo
+    comment: Native HA 2026.10.4 flow tests pass; complete flow coverage is still pending.
+  dependency-transparency:
+    status: todo
+    comment: Exact MIT-licensed PyPI dependency is published and used directly. Public source and issue tracker are configured; automated library publishing remains pending for Core readiness.
+  docs-actions: done
+  docs-high-level-description: done
+  docs-installation-instructions: done
+  docs-removal-instructions: done
+  entity-event-setup: done
+  entity-unique-id: done
+  has-entity-name: done
+  runtime-data: done
+  test-before-configure:
+    status: done
+    comment: Cloud sessions are validated; offline CSV mode intentionally has no remote prerequisite.
+  test-before-setup: done
+  unique-config-entry: done
+  config-entry-unloading: done
+  entity-unavailable: done
+  parallel-updates: done
+  reauthentication-flow: done
+  diagnostics: done
+  entity-translations: done
+  exception-translations: done
+  strict-typing:
+    status: todo
+    comment: Type hints added; full target-version Home Assistant typing checks remain pending.

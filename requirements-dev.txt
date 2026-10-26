@@ -1,0 +1,10 @@
+tzdata>=2026.1
+pseg-nj-mymeter==0.2.0
+aiohttp>=3.12
+probatio>=0.13
+PyYAML>=6
+ruff>=0.17
+pytest>=9
+pytest-asyncio>=1
+build>=1
+setuptools>=77

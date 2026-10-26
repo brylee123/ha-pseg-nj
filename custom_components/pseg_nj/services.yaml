@@ -1,0 +1,16 @@
+import_csv:
+  name: Import electricity CSV
+  description: Import complete usage hours from a CSV in /config/pseg_nj. Billing exports are unsupported.
+  fields:
+    entry_id:
+      name: Integration entry ID
+      description: Value of the integration's Import entry ID diagnostic sensor.
+      required: true
+      selector:
+        text:
+    filename:
+      name: CSV filename
+      description: Filename only, inside /config/pseg_nj, for example usage.csv.
+      required: true
+      selector:
+        text:

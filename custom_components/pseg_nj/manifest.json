@@ -1,0 +1,19 @@
+{
+  "domain": "pseg_nj",
+  "name": "PSE&G NJ Energy",
+  "codeowners": [
+    "@brylee123"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "recorder"
+  ],
+  "documentation": "https://github.com/brylee123/ha-pseg-nj",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/brylee123/ha-pseg-nj/issues",
+  "requirements": [
+    "pseg-nj-mymeter==0.2.0"
+  ],
+  "version": "0.2.1"
+}

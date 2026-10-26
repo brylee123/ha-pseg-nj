@@ -1,0 +1,17 @@
+{
+  "entity": {
+    "sensor": {
+      "import_entry_id": {
+        "default": "mdi:identifier"
+      },
+      "imported_hours": {
+        "default": "mdi:counter"
+      }
+    }
+  },
+  "services": {
+    "import_csv": {
+      "service": "mdi:database-import"
+    }
+  }
+}
