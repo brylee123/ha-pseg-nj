@@ -23,11 +23,13 @@ async with ClientSession(cookie_jar=CookieJar()) as session:
 ```
 
 Build locally with `python -m build library` from the repository root.
-Use `python -m pip install -e library` for development. A public source repository,
-issue tracker, release tags and automated publishing are still prerequisites
-before this library is ready to become a Home Assistant core dependency.
+Use `python -m pip install -e library` for development.
+Source and issues: https://github.com/brylee123/ha-pseg-nj.
 
-The current custom integration bundles an exact copy under
-`_vendor/pseg_mymeter`; `scripts/sync_vendor.py --check` verifies it against this
-canonical source. The bundle is a temporary custom-integration accommodation,
-not the final core dependency architecture.
+The custom integration pins the published PyPI distribution in its manifest
+and imports `pseg_mymeter` directly. No vendored library is shipped in the
+component. Automated library publishing and broader live testing remain
+before proposing this dependency for Home Assistant Core.
+
+The files here support future library development. The existing PyPI 0.2.0
+artifacts are immutable; library changes must use a new version when published.

@@ -26,6 +26,11 @@ jobs:
           RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
         shell: bash
         run: |
+          CURRENT_SHA=$(gh api "repos/$GH_REPO/git/ref/heads/main" --jq '.object.sha')
+          if [ "$CURRENT_SHA" != "$RELEASE_SHA" ]; then
+            echo "A newer main commit exists; wait for its checks."
+            exit 0
+          fi
           VERSION=$(python -c 'import json; print(json.load(open("custom_components/pseg_nj/manifest.json"))["version"])')
           TAG="v$VERSION"
           if gh release view "$TAG" >/dev/null 2>&1; then
